@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="462.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sampleproject.chat_app.controller.ServerFormController">
+<AnchorPane prefHeight="462.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/1.8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sampleproject.chat_app.controller.ServerFormController">
    <children>
       <ImageView fitHeight="462.0" fitWidth="498.0" pickOnBounds="true">
          <image>
@@ -24,9 +25,13 @@
                   <Font name="Cambria Math" size="18.0" />
                </font>
             </Label>
-            <MaterialDesignIconView glyphName="POWER" layoutX="439.0" layoutY="31.0" size="30" />
+            <MaterialDesignIconView glyphName="POWER" layoutX="439.0" layoutY="31.0" onMouseClicked="#shutdownServeOnClick" size="30">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MaterialDesignIconView>
          </children></AnchorPane>
-      <TextField layoutX="14.0" layoutY="421.0" prefHeight="33.0" prefWidth="432.0" style="-fx-background-color: white; -fx-background-radius: 20;" />
-      <MaterialDesignIconView fill="WHITE" glyphName="SEND" layoutX="459.0" layoutY="446.0" size="25" />
+      <TextField fx:id="txtMessageBox" layoutX="14.0" layoutY="421.0" prefHeight="33.0" prefWidth="432.0" style="-fx-background-color: white; -fx-background-radius: 20;" />
+      <MaterialDesignIconView fill="WHITE" glyphName="SEND" layoutX="454.0" layoutY="448.0" size="30" text="" />
    </children>
 </AnchorPane>
