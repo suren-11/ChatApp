@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="loginFormContext" prefHeight="449.0" prefWidth="359.0" xmlns="http://javafx.com/javafx/1.8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sampleproject.chat_app.controller.LoginFormController">
+   <children>
+      <MaterialDesignIconView glyphName="ACCOUNT" layoutX="129.0" layoutY="207.0" size="100" />
+      <Label layoutX="107.0" layoutY="220.0" text="Enter Username">
+         <font>
+            <Font name="Baskerville Old Face" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtUserName" focusTraversable="false" layoutX="46.0" layoutY="257.0" prefHeight="35.0" prefWidth="268.0" promptText="User Name" />
+      <JFXButton buttonType="RAISED" layoutX="46.0" layoutY="308.0" onAction="#startChatOnAction" prefHeight="27.0" prefWidth="268.0" style="-fx-background-color: #3498db;" text="Start Chat" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
