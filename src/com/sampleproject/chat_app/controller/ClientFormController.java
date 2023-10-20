@@ -2,9 +2,12 @@ package com.sampleproject.chat_app.controller;
 
 import com.sampleproject.chat_app.utill.Client;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -19,15 +22,18 @@ import java.net.Socket;
 public class ClientFormController {
     public VBox vboxMsg;
     public Label tblClient;
-    String clientName;
+    public ScrollPane scrollPane;
     public static VBox senderVBox;
     public Client client;
+    public static String userName="";
+    public TextField txtMessageBox;
 
     public void initialize(){
         System.out.println("initialize");
     }
 
     public void setClientName(String name){
+        userName=name;
         new Thread(()->{
             try {
                 senderVBox = vboxMsg;
@@ -40,12 +46,18 @@ public class ClientFormController {
                 e.printStackTrace();
             }
         }).start();
+       /* vboxMsg.heightProperty().addListener((observable, oldValue, newValue) -> {
+            scrollPane.setVvalue((Double)newValue);
+        });*/
+        vboxMsg.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                scrollPane.setVvalue((Double) newValue);
+            }
+        });
 
-        
-        this.clientName=name;
-        System.out.println(clientName);
     }
-    public TextField txtMessageBox;
+
 
     public void exitClientOnClick(MouseEvent mouseEvent) {
     }
@@ -81,5 +93,10 @@ public class ClientFormController {
                 vBox.getChildren().add(hBox);
             });
         }
+    }
+
+    public void sendMessageOnClicked(MouseEvent mouseEvent) {
+        client.sendMessage(txtMessageBox.getText(),vboxMsg,userName);
+        txtMessageBox.clear();
     }
 }

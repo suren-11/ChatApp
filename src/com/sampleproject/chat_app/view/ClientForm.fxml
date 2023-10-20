@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="462.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/1.8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sampleproject.chat_app.controller.ClientFormController">
+<AnchorPane prefHeight="462.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sampleproject.chat_app.controller.ClientFormController">
     <children>
         <ImageView fitHeight="462.0" fitWidth="498.0" pickOnBounds="true">
             <image>
                 <Image url="@asserts/background.jpg" />
             </image>
         </ImageView>
-        <ScrollPane layoutY="54.0" prefHeight="361.0" prefWidth="498.0">
+        <ScrollPane fx:id="scrollPane" layoutY="54.0" prefHeight="361.0" prefWidth="498.0">
          <content>
             <VBox fx:id="vboxMsg" prefHeight="361.0" prefWidth="498.0" />
          </content></ScrollPane>
@@ -36,7 +36,7 @@
                 </MaterialDesignIconView>
             </children></AnchorPane>
         <TextField fx:id="txtMessageBox" layoutX="14.0" layoutY="421.0" prefHeight="33.0" prefWidth="432.0" style="-fx-background-color: white; -fx-background-radius: 20;" />
-        <MaterialDesignIconView fill="WHITE" glyphName="SEND" layoutX="454.0" layoutY="448.0" size="30" text="" />
+        <MaterialDesignIconView fill="WHITE" glyphName="SEND" layoutX="454.0" layoutY="448.0" onMouseClicked="#sendMessageOnClicked" size="30" text="" />
       <MaterialDesignIconView glyphName="CAMERA" layoutX="408.0" layoutY="446.0" size="25" />
       <MaterialDesignIconView glyphName="ATTACHMENT" layoutX="373.0" layoutY="446.0" size="25" />
       <MaterialDesignIconView glyphName="EMOTICON" layoutX="24.0" layoutY="446.0" size="25" />
