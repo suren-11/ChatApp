@@ -29,9 +29,9 @@ public class ServerFormController {
             try{
                 ServerSocket serverSocket = new ServerSocket(5000);
                 System.out.println("server started..");
+                displayMessageOnRight("Server Started..");
                 server = new Server(serverSocket);
                 server.startServer(vBoxMsgS);
-
             }catch (IOException e){
                 e.printStackTrace();
             }
@@ -44,7 +44,7 @@ public class ServerFormController {
             }
         });
     }
-    public static void displayMessageOnRight(String messageToSend, VBox vBox){
+    public static void displayMessageOnRight(String messageToSend){
         if (!messageToSend.isEmpty()){
             HBox hBox = new HBox();
             hBox.setAlignment(Pos.CENTER_RIGHT);
@@ -55,9 +55,6 @@ public class ServerFormController {
             textFlow.setPadding(new Insets(5,5,5,10));
             msgText.setFill(Color.WHITE);
             hBox.getChildren().add(textFlow);
-            Platform.runLater(()->{
-                vBox.getChildren().add(hBox);
-            });
         }
     }
 
