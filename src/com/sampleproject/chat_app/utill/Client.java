@@ -1,5 +1,6 @@
 package com.sampleproject.chat_app.utill;
 
+import com.sampleproject.chat_app.controller.ClientFormController;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 
@@ -28,6 +29,28 @@ public class Client {
             closeAll(this.socket,this.bufferedReader,this.bufferedWriter);
         }
     }
+    public void sendMessage(String msgToSend, VBox vBox, String sender){
+        this.sendersVBox=vBox;
+        new Thread(()->{
+            try {
+                this.bufferedWriter.write(userName);
+                this.bufferedWriter.newLine();
+                this.bufferedWriter.flush();
+                if (msgToSend.contains("left")){
+                    this.bufferedWriter.write(msgToSend);
+                }else if (msgToSend.contains(" has joined")){
+                    this.bufferedWriter.write(msgToSend);
+                }else {
+                    this.bufferedWriter.flush();
+                    this.bufferedWriter.write(userName+":"+msgToSend);
+                }
+                this.bufferedWriter.newLine();
+                this.bufferedWriter.flush();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }).start();
+    }
     public void listenForMessage(VBox vBox, String userName){
         new Thread(()->{
             String msgFromChat = null;
@@ -42,9 +65,10 @@ public class Client {
                         String sendersName = strings[0].trim();
                         if (strings.length==2|| msgFromChat.contains(" has joined")|| msgFromChat.contains("left")){
                             if (sendersName.equals("sender")){
-                                //client form controller => display ==> static method
+                                ClientFormController.displayMessageOnRight(
+                                        msgFromChat.split(":")[1], vBox);
                             }else {
-                                //client from controller ==> display left
+                                ClientFormController.displayMessageOnLeft(msgFromChat,vBox);
                             }
                         }
                     }
