@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="462.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/1.8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sampleproject.chat_app.controller.ServerFormController">
+   <children>
+      <ImageView fitHeight="462.0" fitWidth="498.0" pickOnBounds="true">
+         <image>
+            <Image url="@asserts/background.jpg" />
+         </image>
+      </ImageView>
+      <ScrollPane fx:id="scrollPane" layoutY="54.0" prefHeight="361.0" prefWidth="498.0">
+         <content>
+            <VBox fx:id="vBoxMsgS" prefHeight="358.0" prefWidth="496.0" />
+         </content></ScrollPane>
+    <AnchorPane layoutX="4.0" layoutY="8.0" minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="489.0" style="-fx-background-color: #55efc4; -fx-background-radius: 20;">
+         <children>
+            <Label layoutX="14.0" layoutY="10.0" text="Server">
+               <font>
+                  <Font name="Cambria Math" size="18.0" />
+               </font>
+            </Label>
+            <MaterialDesignIconView glyphName="POWER" layoutX="439.0" layoutY="31.0" onMouseClicked="#shutdownServeOnClick" size="30">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MaterialDesignIconView>
+         </children></AnchorPane>
+      <TextField fx:id="txtMessageBox" layoutX="14.0" layoutY="421.0" prefHeight="33.0" prefWidth="432.0" style="-fx-background-color: white; -fx-background-radius: 20;" />
+      <MaterialDesignIconView fill="WHITE" glyphName="SEND" layoutX="454.0" layoutY="448.0" size="30" text="" />
+   </children>
+</AnchorPane>
