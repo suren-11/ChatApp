@@ -55,6 +55,7 @@ public class ServerFormController {
             textFlow.setPadding(new Insets(5,5,5,10));
             msgText.setFill(Color.WHITE);
             hBox.getChildren().add(textFlow);
+
         }
     }
 
@@ -76,5 +77,7 @@ public class ServerFormController {
     }
 
     public void shutdownServeOnClick(MouseEvent mouseEvent) {
+        server.closeServerSocket();
+        Platform.exit();
     }
 }

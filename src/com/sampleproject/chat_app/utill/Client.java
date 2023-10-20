@@ -65,7 +65,7 @@ public class Client {
                         String[] strings = msgFromChat.split(":");
                         String sendersName = strings[0].trim();
                         if (strings.length==2|| msgFromChat.contains(" has joined")|| msgFromChat.contains("left")){
-                            if (sendersName.equals("sender")){
+                            if (sendersName.equals("Sender")){
                                 ClientFormController.displayMessageOnRight(
                                         msgFromChat.split(":")[1], vBox);
                             }else {

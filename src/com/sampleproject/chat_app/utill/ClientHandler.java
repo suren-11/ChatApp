@@ -1,5 +1,6 @@
 package com.sampleproject.chat_app.utill;
 
+import com.sampleproject.chat_app.controller.ServerFormController;
 import javafx.scene.layout.VBox;
 
 import java.io.*;
@@ -42,6 +43,56 @@ public class ClientHandler implements Runnable{
     }
     @Override
     public void run() {
+        ServerFormController.displayMessageOnLeft(userName+" has joined the chat",vBox);
+        String msgFromClient;
+        while (socket.isConnected()){
+            try {
+                msgFromClient = bufferedReader.readLine();
+                if (msgFromClient.contains("left")){
+                    removeFromTheChat();
+                }
+                broadcastMessage(msgFromClient);
+            }catch (IOException e){
+                closeAll(this.socket,this.bufferedReader,this.bufferedWriter);
+            }
+        }
+    }
 
+    public void broadcastMessage(String msgBroadcast) {
+        for (ClientHandler clients: allClients){
+            try {
+                if (!clients.userName.equals(userName)){
+                    clients.bufferedWriter.write(msgBroadcast);
+                    clients.bufferedWriter.newLine();
+                    clients.bufferedWriter.flush();
+                    System.out.println("");
+                }
+                if (clients.userName.equals(userName)){
+                    String[] originalMsg = msgBroadcast.split(":");
+                    if (originalMsg.length==2){
+                        sendToOriginalUser(clients,originalMsg[1]);
+                    }
+                }
+            }catch (Exception e){
+                closeAll(this.socket,this.bufferedReader,this.bufferedWriter);
+            }
+        }
+    }
+
+    private void sendToOriginalUser(ClientHandler clients, String originalMessage) {
+        try {
+            clients.bufferedWriter.write("Sender :"+originalMessage);
+            clients.bufferedWriter.newLine();
+            clients.bufferedWriter.flush();
+            System.out.println("..");
+        }catch (Exception e){
+            closeAll(this.socket,this.bufferedReader,this.bufferedWriter);
+        }
+    }
+
+    public void removeFromTheChat(){
+        allClients.remove(this);
+        ServerFormController.displayMessageOnLeft(this.userName+" has left the chat",vBox);
+        closeAll(this.socket,this.bufferedReader,this.bufferedWriter);
     }
 }
