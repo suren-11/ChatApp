@@ -34,6 +34,8 @@ public class ClientFormController {
                 tblClient.setText(name);
                 client = new Client(new Socket("localhost",5000),name,vboxMsg);
                 System.out.println("connected to the server");
+                client.listenForMessage(vboxMsg,name);
+                client.sendMessage(name+" has joined the chat!",vboxMsg,"SERVER");
             } catch (IOException e) {
                 e.printStackTrace();
             }
